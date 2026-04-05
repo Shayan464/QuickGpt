@@ -17,7 +17,16 @@ const App = () => {
       const { data } = await axios.post(url, { name, email, password });
       if (data.success) {
         setToken(data.token);
-        toast('Welcome Back !');
+        toast('🔥 Welcome!', {
+          position: 'top-center',
+          autoClose: 2500,
+          style: {
+            background: 'black',
+            color: '#fff',
+            borderRadius: '10px',
+            fontWeight: '200',
+          },
+        });
         localStorage.setItem('token', data.token);
       } else {
         toast.error(data.message);
