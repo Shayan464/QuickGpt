@@ -12,6 +12,7 @@ Live Url : https://quick-gpt-s6wc.vercel.app
 - ⚡ Fast and responsive UI
 - 🔐 Secure backend integration
 - 🌐 Full-stack MERN architecture
+- 🤖 Integrated Gemini Api 
 
 ---
 
@@ -70,7 +71,7 @@ PORT=5000
 ## 📌 Future Improvements
 
 - Payment Integration
-- Deployment
+
 
 ---
 
