@@ -2,6 +2,8 @@
 
 QuickGPT is a modern AI assistant built using a full-stack approach, designed to deliver fast, responsive, and intelligent conversational experiences.
 
+Live Url : https://quick-gpt-s6wc.vercel.app
+
 ---
 
 ## 🧠 Features
@@ -10,6 +12,7 @@ QuickGPT is a modern AI assistant built using a full-stack approach, designed to
 - ⚡ Fast and responsive UI
 - 🔐 Secure backend integration
 - 🌐 Full-stack MERN architecture
+- 🤖 Integrated Gemini Api 
 
 ---
 
@@ -68,7 +71,7 @@ PORT=5000
 ## 📌 Future Improvements
 
 - Payment Integration
-- Deployment
+
 
 ---
 
