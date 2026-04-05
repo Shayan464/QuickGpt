@@ -23,7 +23,7 @@ app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/credit', creditRouter);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 'https://quick-gpt-s6wc.vercel.app';
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
