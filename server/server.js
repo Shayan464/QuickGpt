@@ -11,7 +11,12 @@ const app = express();
 
 await connectDB();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://quick-gpt-s6wc.vercel.app'],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -23,7 +28,7 @@ app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/credit', creditRouter);
 
-const port = process.env.PORT || 'https://quick-gpt-s6wc.vercel.app';
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
