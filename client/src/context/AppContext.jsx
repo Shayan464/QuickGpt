@@ -24,10 +24,10 @@ export const AppContextProvider = ({ children }) => {
       if (data.success) {
         setUser(data.user);
       } else {
-        toast.error(data.message);
+        console.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      console.error(error.message);
     } finally {
       setLoadingUser(false);
     }

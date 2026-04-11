@@ -125,7 +125,8 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
               <img
                 src={assets.bin_icon}
                 alt=""
-                className="hidden group-hover:block w-4 cursor-pointer not-dark:invert"
+                className="w-4 cursor-pointer not-dark:invert
+             block md:hidden md:group-hover:block"
                 onClick={(e) =>
                   toast.promise(deleteChat(e, chat._id), {
                     loading: 'deleting...',
@@ -199,7 +200,7 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
           <img
             onClick={logout}
             src={assets.logout_icon}
-            className="h-5 cursor-pointer hidden not-dark:invert group-hover:block"
+            className="h-5 cursor-pointer block md:hidden md:group-hover:block not-dark:invert "
           />
         )}
       </div>

@@ -17,6 +17,7 @@ const Chatbox = () => {
     try {
       e.preventDefault();
       if (!user) return toast('Login to send message');
+      if (!prompt.trim()) return;
       setLoading(true);
       const promptCopy = prompt;
       setPrompt('');
@@ -55,7 +56,7 @@ const Chatbox = () => {
     } catch (error) {
       toast.error(error.message);
     } finally {
-      setPrompt(' ');
+      setPrompt('');
       setLoading(false);
     }
   };

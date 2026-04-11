@@ -21,7 +21,7 @@ const App = () => {
   return (
     <>
       <Toaster />
-      {!isMenuOpen && (
+      {!isMenuOpen && user && (
         <img
           src={assets.menu_icon}
           className="absolute top-3 left-3 w-8 h-8 cursor-pointer md:hidden not-dark:invert"
@@ -31,6 +31,12 @@ const App = () => {
       {user ? (
         <div className=" bg-white dark:bg-gradient-to-b dark:from-[#242124] dark:to-[#000000] dark:text-white">
           <div className="flex h-screen w-screen">
+            {isMenuOpen && (
+              <div
+                className="fixed inset-0 z-10 md:hidden"
+                onClick={() => setIsMenuOpen(false)}
+              />
+            )}
             <Sidebar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             <Routes>
               <Route path="/" element={<Chatbox />} />
