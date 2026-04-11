@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import toast from 'react-hot-toast';
+import { Eye, EyeOff } from 'lucide-react';
 
 const App = () => {
   const [state, setState] = useState('login');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const { axios, setToken } = useAppContext();
 
   const handleSubmit = async (e) => {
@@ -69,16 +71,25 @@ const App = () => {
           required
         />
       </div>
-      <div className="w-full ">
+      <div className="w-full">
         <p>Password</p>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          placeholder="type here"
-          className="border border-gray-200 rounded w-full p-2 mt-1 outline-purple-500"
-          type="password"
-          required
-        />
+        <div className="relative">
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            placeholder="type here"
+            className="border border-gray-200 rounded w-full p-2 mt-1 outline-purple-500 pr-10"
+            type={showPassword ? 'text' : 'password'}
+            required
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+          >
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          </button>
+        </div>
       </div>
       {state === 'register' ? (
         <p>

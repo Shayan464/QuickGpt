@@ -18,6 +18,13 @@ export const registerUser = async (req, res) => {
       return res.json({ success: false, message: 'User already exists' });
     }
 
+    if (password <= 5) {
+      return res.json({
+        status: false,
+        message: 'Password must be at least 6 characters long',
+      });
+    }
+
     const user = await User.create({ name, email, password });
 
     const token = generateToken(user._id);
