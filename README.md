@@ -3,7 +3,6 @@
 QuickGPT is a modern AI assistant built using a full-stack approach, designed to deliver fast, responsive, and intelligent conversational experiences.
 
 Live Url : https://quick-gpt-s6wc.vercel.app
-- Demo Account: Email = shayan@gmail.com , password = Shayan@123
 
 ---
 
