@@ -24,7 +24,7 @@ const App = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error('Invalid Email or Password');
+      toast.error('Invalid Email or Password', error);
     }
   };
 
