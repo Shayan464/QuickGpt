@@ -11,7 +11,8 @@ const generateToken = (id) => {
 // Api to register user
 
 export const registerUser = async (req, res) => {
-  const { email, name, password } = req.body;
+  let { email, name, password } = req.body;
+  email = email.toLowerCase();
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -38,8 +39,8 @@ export const registerUser = async (req, res) => {
 // API to login user
 
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-
+  let { email, password } = req.body;
+  email = email.toLowerCase();
   try {
     const user = await User.findOne({ email });
 
