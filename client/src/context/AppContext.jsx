@@ -1,9 +1,10 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://quickgpt-pxr6.onrender.com';
+axios.defaults.baseURL = 'http://localhost:3000';
+//  'https://quickgpt-pxr6.onrender.com';
 
 const AppContext = createContext();
 
@@ -15,6 +16,8 @@ export const AppContextProvider = ({ children }) => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [loadingUser, setLoadingUser] = useState(true);
+  const previousUserRef = useRef(null);
+  const hadInitialTokenRef = useRef(!!localStorage.getItem('token'));
 
   const fetchUser = async () => {
     try {
@@ -94,6 +97,27 @@ export const AppContextProvider = ({ children }) => {
       setChats([]);
       setSelectedChat(null);
     }
+  }, [user]);
+
+  useEffect(() => {
+    if (
+      previousUserRef.current === null &&
+      user !== null &&
+      !hadInitialTokenRef.current
+    ) {
+      toast('🔥 Welcome!', {
+        position: 'top-center',
+        autoClose: 2500,
+        style: {
+          background: 'black',
+          color: '#fff',
+          borderRadius: '10px',
+          fontWeight: '200',
+        },
+      });
+      hadInitialTokenRef.current = true;
+    }
+    previousUserRef.current = user;
   }, [user]);
 
   const value = {

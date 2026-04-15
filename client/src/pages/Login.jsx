@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
+import { Eye, EyeOff } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const { axios, setToken } = useAppContext();
 
   const handleSubmit = async (e) => {
@@ -16,24 +18,21 @@ const App = () => {
     try {
       const { data } = await axios.post(url, { name, email, password });
       if (data.success) {
-        setToken(data.token);
-        toast('🔥 Welcome!', {
-          position: 'top-center',
-          autoClose: 2500,
-          style: {
-            background: 'black',
-            color: '#fff',
-            borderRadius: '10px',
-            fontWeight: '200',
-          },
-        });
         localStorage.setItem('token', data.token);
+        setToken(data.token);
       } else {
         toast.error(data.message);
       }
     } catch (error) {
       toast.error('Invalid Email or Password');
     }
+  };
+
+  const showPass = () => {
+    setShowPassword(true);
+    setTimeout(() => {
+      setShowPassword(false);
+    }, 3000);
   };
 
   return (
@@ -71,14 +70,27 @@ const App = () => {
       </div>
       <div className="w-full ">
         <p>Password</p>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          placeholder="type here"
-          className="border border-gray-200 rounded w-full p-2 mt-1 outline-purple-500"
-          type="password"
-          required
-        />
+        <div className="relative">
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            placeholder="type here"
+            className="border border-gray-200 rounded w-full p-2 mt-1 outline-purple-500 pr-10"
+            type={showPassword ? 'text' : 'password'}
+            required
+          />
+          {showPassword ? (
+            <Eye
+              className="absolute right-3 top-3 w-5 h-5 cursor-pointer text-gray-400 hover:text-gray-600"
+              onClick={showPass}
+            />
+          ) : (
+            <EyeOff
+              className="absolute right-3 top-3 w-5 h-5 cursor-pointer text-gray-400 hover:text-gray-600"
+              onClick={showPass}
+            />
+          )}
+        </div>
       </div>
       {state === 'register' ? (
         <p>

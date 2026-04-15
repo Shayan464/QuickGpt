@@ -11,11 +11,19 @@ const generateToken = (id) => {
 // Api to register user
 
 export const registerUser = async (req, res) => {
-  const { email, name, password } = req.body;
+  let { email, name, password } = req.body;
+  email = email.toLowerCase();
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.json({ success: false, message: 'User already exists' });
+    }
+
+    if (password.length <= 5) {
+      return res.json({
+        success: false,
+        message: 'Password must be 6 Characters long',
+      });
     }
 
     const user = await User.create({ name, email, password });
@@ -31,7 +39,8 @@ export const registerUser = async (req, res) => {
 // API to login user
 
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  let { email, password } = req.body;
+  email = email.toLowerCase();
 
   try {
     const user = await User.findOne({ email });
