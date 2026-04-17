@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://quickgpt-pxr6.onrender.com';
+axios.defaults.baseURL = 'https://quickgpt-en5e.onrender.com';
 
 const AppContext = createContext();
 
